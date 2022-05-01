@@ -29,6 +29,6 @@ jobs:
         && git clone https://github.com/calcit-lang/calcit-test.git
 
     - name: "test"
-      run: cr -1 --entry test
+      run: cr -1
 
-    - run: cr --emit-js -1 --entry test && yarn && node ./main.mjs
+    - run: cr --emit-js -1 && yarn && node ./main.mjs
