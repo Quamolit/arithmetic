@@ -8,7 +8,7 @@
       :ns $ quote
         ns arithmetic.test $ :require
           calcit-test.core :refer $ deftest testing is *quit-on-failure?
-          arithmetic.complex :as complex
+          arithmetic.complex :as 2d
       :defs $ {}
         |main! $ quote
           defn main! () $ run-tests
@@ -20,10 +20,10 @@
           deftest test-basic
             testing |add $ is
               = ([] 3 5)
-                complex/&+ ([] 1 2) ([] 2 3)
+                2d/&+ ([] 1 2) ([] 2 3)
             testing |minus $ is
               = ([] -1 -1)
-                complex/&- ([] 1 2) ([] 2 3)
+                2d/&- ([] 1 2) ([] 2 3)
     |arithmetic.complex $ {}
       :ns $ quote (ns phlox.complex)
       :defs $ {}
