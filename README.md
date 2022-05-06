@@ -1,31 +1,28 @@
 
-Calcit Workflow
+Arithmetic
 ----
 
-> running in both Calcit and Calcit-js, with hot code reload.
+> for complex numbers
 
 ### Usages
 
-Install [Calcit](https://github.com/calcit-lang/calcit) to run demo:
+```cirru
+ns demo :require
+  arithmetic.complex :as complex
 
-```bash
-cr -1 # run once
-
-cr # run and watch
+complex/&+ ([] 1 2) ([] 3 4)
 ```
 
-run tests:
+Functions:
 
-```bash
-cr -1 --entry test
-```
-
-run test in JavaScript:
-
-```bash
-cr --emit-js -1 --entry test # emit-js once
-node main.mjs # run code
-```
+- `&+ a b`
+- `&- a b`
+- `&* a b`
+- `&/ a b`
+- `conjugate a`
+- `scale a x-scalar`
+- `divide-by a x-scalar`, scales down by factor
+- `polar-point radian radius`, create a point from radian
 
 ### Workflow
 
