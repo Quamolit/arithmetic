@@ -4,5 +4,9 @@
 
 js-out/
 node_modules
+.calcit/
+.yarn/
+compact.cirru
+package.cirru
 
 example/
