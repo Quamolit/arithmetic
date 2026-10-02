@@ -2,33 +2,40 @@ name: Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request: {}
+
+permissions:
+  contents: read
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v2
-
-    - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
-      id: ACTIONS_ALLOW_UNSECURE_COMMANDS
-      run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
-
-    - name: add cr
-      run: |
-        mkdir -p $GITHUB_WORKSPACE/bin
-        wget -O $GITHUB_WORKSPACE/bin/cr http://repo.calcit-lang.org/binaries/linux/cr
-        chmod +x $GITHUB_WORKSPACE/bin/cr
-        echo "::add-path::$GITHUB_WORKSPACE/bin"
-
-    - name: "prepare modules"
-      run: >
-        mkdir -p ~/.config/calcit/modules/ && cd ~/.config/calcit/modules/
-        && git clone https://github.com/calcit-lang/calcit-test.git
-
-    - name: "test"
-      run: cr -1
-
-    - run: cr --emit-js -1 && yarn && node ./main.mjs
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6.5.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Enable Corepack
+        run: corepack enable
+      - uses: calcit-lang/setup-calcit@v1.5.0
+        with:
+          version: "0.27.0"
+          tools: calcit,caps
+          caps-version: "0.1.1"
+      - name: Install dependencies
+        run: |
+          caps --ci --strict
+          yarn install --immutable
+          caps verify --toolchain
+      - name: Check snapshot and public contracts
+        run: |
+          calcit edit format
+          git diff --exit-code -- calcit.cirru
+          calcit --check-only
+          calcit analyze check-public --ns 'arithmetic.$meta' --ns arithmetic.complex --ns arithmetic.test
+      - name: Run native and JavaScript arithmetic
+        run: yarn test
