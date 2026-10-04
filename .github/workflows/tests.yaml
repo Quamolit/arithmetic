@@ -23,7 +23,7 @@ jobs:
         run: corepack enable
       - uses: calcit-lang/setup-calcit@v1.5.0
         with:
-          version: "0.27.0"
+          version: "0.28.0"
           tools: calcit,caps
           caps-version: "0.1.1"
       - name: Install dependencies
@@ -35,7 +35,7 @@ jobs:
         run: |
           calcit edit format
           git diff --exit-code -- calcit.cirru
-          calcit --check-only
-          calcit analyze check-public --ns 'arithmetic.$meta' --ns arithmetic.complex --ns arithmetic.test
+          calcit --strict-types --warn-dyn-method --check-only
+          calcit analyze check-public --ns arithmetic.complex --ns arithmetic.test
       - name: Run native and JavaScript arithmetic
         run: yarn test
