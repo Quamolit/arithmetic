@@ -7,7 +7,7 @@ Arithmetic
 ### Usages
 
 ```cirru
-ns demo $ :require (arithmetic.complex :as complex)
+ns demo $ :require $ arithmetic.complex :as complex
 
 complex/add ([] 1 2) ([] 3 4)
 ```
@@ -25,7 +25,7 @@ Functions:
 
 ### Workflow
 
-需要正式 Calcit 0.27.0、caps 0.1.1、Node.js 24 和 Yarn 4.18.0：
+需要正式 Calcit 0.28.0、caps 0.1.1、Node.js 24 和 Yarn 4.18.0：
 
 ```sh
 caps --ci --strict
@@ -41,6 +41,10 @@ yarn test
 迁移提示：旧 `&+`、`&-`、`&*`、`&/` 分别改为 `add`、`subtract`、`multiply`、`divide`，
 调用方需要同步改名。极坐标计算使用跨后端 `cos` / `sin`，不再直接调用 JS Math。
 复数运算保留原公式；代码中的 `List<Number>` 契约不证明列表长度，调用方仍需提供有效复数对。
+
+CLI 与 `@calcit/procs` 同步升级至正式 0.28.0。CI 显式启用严格类型检查和动态方法警告，
+检查全部 12 个定义，保留原有八种运算断言和同一组 native/JavaScript 回放。
+已有数字列表/数字参数/Unit 入口契约不变，不为迁移添加断言、验证脚本或改写规则。
 
 https://github.com/calcit-lang/calcit-workflow
 
