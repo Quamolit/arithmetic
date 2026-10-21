@@ -25,7 +25,7 @@ Functions:
 
 ### Workflow
 
-需要正式 Calcit 0.28.0、caps 0.1.1、Node.js 24 和 Yarn 4.18.0：
+需要配对的正式 Calcit / `@calcit/procs` 0.30.1、caps 0.1.1、Node.js 24 和 Yarn 4.18.0：
 
 ```sh
 caps --ci --strict
@@ -42,9 +42,11 @@ yarn test
 调用方需要同步改名。极坐标计算使用跨后端 `cos` / `sin`，不再直接调用 JS Math。
 复数运算保留原公式；代码中的 `List<Number>` 契约不证明列表长度，调用方仍需提供有效复数对。
 
-CLI 与 `@calcit/procs` 同步升级至正式 0.28.0。CI 显式启用严格类型检查和动态方法警告，
-检查全部 12 个定义，保留原有八种运算断言和同一组 native/JavaScript 回放。
-已有数字列表/数字参数/Unit 入口契约不变，不为迁移添加断言、验证脚本或改写规则。
+CLI 与 `@calcit/procs` 同步升级至正式 0.30.1。复数除法的旧 `let-sugar` 改为直接的 `let[]` / `let`，
+绑定顺序、原公式与公开 API 不变。CI 显式启用严格类型检查和动态方法警告，
+检查全部定义及完整 strict，并要求零弃用调用；保留原有八种运算断言和同一组 native/JavaScript 回放。
+已有数字列表/数字参数/Unit 入口契约不变，不为迁移添加断言、验证脚本、依赖安全例外或改写规则。
+本库没有前端资源，因此不配置 COS/CDN，也没有部署或新 tag 发布操作。
 
 https://github.com/calcit-lang/calcit-workflow
 

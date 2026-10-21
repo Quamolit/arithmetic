@@ -31,10 +31,7 @@
             :return $ :: 'List 'Number
         'divide $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn divide (value base) "|complex number division, renamed since naming collision"
-            let-sugar
-                  [] x y
-                  , value
-                ([] a b) base
+            let[] (x y) value $ let[] (a b) base $ let
                 inverted $ / 1 $ + (* a a) (* b b)
               []
                 * inverted $ + (* x a) (* y b)
