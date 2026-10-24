@@ -47,7 +47,7 @@
                 .unwrap $ nth point 0
                 , x
               /
-                .unwrap $ nth point $ dec (count point)
+                .unwrap $ nth point $ dec (.len point)
                 , x
           :examples $ []
           :schema $ :: 'Fn $ {}
