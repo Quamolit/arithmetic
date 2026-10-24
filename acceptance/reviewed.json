@@ -1,0 +1,1062 @@
+[
+  {
+    "code": [
+      "def",
+      "calcit-dirname",
+      "|"
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.$meta/calcit-dirname",
+    "js_ffi": null,
+    "schema": null,
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "def",
+      "calcit-filename",
+      "|calcit.cirru"
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.$meta/calcit-filename",
+    "js_ffi": null,
+    "schema": null,
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "add",
+      [
+        "p1",
+        "p2"
+      ],
+      [
+        "let",
+        [
+          [
+            "a",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "p1",
+                "0"
+              ]
+            ]
+          ],
+          [
+            "b",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "p1",
+                "1"
+              ]
+            ]
+          ],
+          [
+            "x",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "p2",
+                "0"
+              ]
+            ]
+          ],
+          [
+            "y",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "p2",
+                "1"
+              ]
+            ]
+          ]
+        ],
+        [
+          "[]",
+          [
+            "+",
+            "a",
+            "x"
+          ],
+          [
+            "+",
+            "b",
+            "y"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.complex/add",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          [
+            "::",
+            "'List",
+            "'Number"
+          ],
+          [
+            "::",
+            "'List",
+            "'Number"
+          ]
+        ]
+      ],
+      [
+        ":return",
+        [
+          "::",
+          "'List",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "conjugate",
+      [
+        "pair"
+      ],
+      [
+        "assoc",
+        "pair",
+        "1",
+        [
+          "negate",
+          [
+            ".unwrap",
+            [
+              "nth",
+              "pair",
+              "1"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.complex/conjugate",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          [
+            "::",
+            "'List",
+            "'Number"
+          ]
+        ]
+      ],
+      [
+        ":return",
+        [
+          "::",
+          "'List",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "divide",
+      [
+        "value",
+        "base"
+      ],
+      "|complex number division, renamed since naming collision",
+      [
+        "let[]",
+        [
+          "x",
+          "y"
+        ],
+        "value",
+        [
+          "let[]",
+          [
+            "a",
+            "b"
+          ],
+          "base",
+          [
+            "let",
+            [
+              [
+                "inverted",
+                [
+                  "/",
+                  "1",
+                  [
+                    "+",
+                    [
+                      "*",
+                      "a",
+                      "a"
+                    ],
+                    [
+                      "*",
+                      "b",
+                      "b"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "[]",
+              [
+                "*",
+                "inverted",
+                [
+                  "+",
+                  [
+                    "*",
+                    "x",
+                    "a"
+                  ],
+                  [
+                    "*",
+                    "y",
+                    "b"
+                  ]
+                ]
+              ],
+              [
+                "*",
+                "inverted",
+                [
+                  "-",
+                  [
+                    "*",
+                    "y",
+                    "a"
+                  ],
+                  [
+                    "*",
+                    "x",
+                    "b"
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.complex/divide",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          [
+            "::",
+            "'List",
+            "'Number"
+          ],
+          [
+            "::",
+            "'List",
+            "'Number"
+          ]
+        ]
+      ],
+      [
+        ":return",
+        [
+          "::",
+          "'List",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "divide-by",
+      [
+        "point",
+        "x"
+      ],
+      [
+        "[]",
+        [
+          "/",
+          [
+            ".unwrap",
+            [
+              "nth",
+              "point",
+              "0"
+            ]
+          ],
+          "x"
+        ],
+        [
+          "/",
+          [
+            ".unwrap",
+            [
+              "nth",
+              "point",
+              [
+                "dec",
+                [
+                  "count",
+                  "point"
+                ]
+              ]
+            ]
+          ],
+          "x"
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.complex/divide-by",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          [
+            "::",
+            "'List",
+            "'Number"
+          ],
+          "'Number"
+        ]
+      ],
+      [
+        ":return",
+        [
+          "::",
+          "'List",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "multiply",
+      [
+        "v1",
+        "v2"
+      ],
+      [
+        "let",
+        [
+          [
+            "a",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "v1",
+                "0"
+              ]
+            ]
+          ],
+          [
+            "b",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "v1",
+                "1"
+              ]
+            ]
+          ],
+          [
+            "x",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "v2",
+                "0"
+              ]
+            ]
+          ],
+          [
+            "y",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "v2",
+                "1"
+              ]
+            ]
+          ]
+        ],
+        [
+          "[]",
+          [
+            "-",
+            [
+              "*",
+              "a",
+              "x"
+            ],
+            [
+              "*",
+              "b",
+              "y"
+            ]
+          ],
+          [
+            "+",
+            [
+              "*",
+              "a",
+              "y"
+            ],
+            [
+              "*",
+              "b",
+              "x"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.complex/multiply",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          [
+            "::",
+            "'List",
+            "'Number"
+          ],
+          [
+            "::",
+            "'List",
+            "'Number"
+          ]
+        ]
+      ],
+      [
+        ":return",
+        [
+          "::",
+          "'List",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "polar-point",
+      [
+        "angle",
+        "r"
+      ],
+      [
+        "[]",
+        [
+          "*",
+          "r",
+          [
+            "cos",
+            "angle"
+          ]
+        ],
+        [
+          "*",
+          "r",
+          [
+            "sin",
+            "angle"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.complex/polar-point",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'Number",
+          "'Number"
+        ]
+      ],
+      [
+        ":return",
+        [
+          "::",
+          "'List",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "scale",
+      [
+        "pair",
+        "v"
+      ],
+      [
+        "map",
+        "pair",
+        [
+          "fn",
+          [
+            "x"
+          ],
+          [
+            "*",
+            "v",
+            "x"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.complex/scale",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          [
+            "::",
+            "'List",
+            "'Number"
+          ],
+          "'Number"
+        ]
+      ],
+      [
+        ":return",
+        [
+          "::",
+          "'List",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "subtract",
+      [
+        "v1",
+        "v2"
+      ],
+      [
+        "let",
+        [
+          [
+            "a",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "v1",
+                "0"
+              ]
+            ]
+          ],
+          [
+            "b",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "v1",
+                "1"
+              ]
+            ]
+          ],
+          [
+            "x",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "v2",
+                "0"
+              ]
+            ]
+          ],
+          [
+            "y",
+            [
+              ".unwrap",
+              [
+                "nth",
+                "v2",
+                "1"
+              ]
+            ]
+          ]
+        ],
+        [
+          "[]",
+          [
+            "-",
+            "a",
+            "x"
+          ],
+          [
+            "-",
+            "b",
+            "y"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.complex/subtract",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          [
+            "::",
+            "'List",
+            "'Number"
+          ],
+          [
+            "::",
+            "'List",
+            "'Number"
+          ]
+        ]
+      ],
+      [
+        ":return",
+        [
+          "::",
+          "'List",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "main!",
+      [],
+      [
+        "run-tests"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.test/main!",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "reload!",
+      [],
+      [
+        "run-tests"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.test/reload!",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "run-tests",
+      [],
+      [
+        "test-basic"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.test/run-tests",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "test-basic",
+      [],
+      [
+        "assert=",
+        [
+          "[]",
+          "3",
+          "5"
+        ],
+        [
+          "2d/add",
+          [
+            "[]",
+            "1",
+            "2"
+          ],
+          [
+            "[]",
+            "2",
+            "3"
+          ]
+        ]
+      ],
+      [
+        "assert=",
+        [
+          "[]",
+          "-1",
+          "-1"
+        ],
+        [
+          "2d/subtract",
+          [
+            "[]",
+            "1",
+            "2"
+          ],
+          [
+            "[]",
+            "2",
+            "3"
+          ]
+        ]
+      ],
+      [
+        "assert=",
+        [
+          "[]",
+          "-5",
+          "10"
+        ],
+        [
+          "2d/multiply",
+          [
+            "[]",
+            "1",
+            "2"
+          ],
+          [
+            "[]",
+            "3",
+            "4"
+          ]
+        ]
+      ],
+      [
+        "assert=",
+        [
+          "[]",
+          "1",
+          "2"
+        ],
+        [
+          "2d/divide",
+          [
+            "[]",
+            "-5",
+            "10"
+          ],
+          [
+            "[]",
+            "3",
+            "4"
+          ]
+        ]
+      ],
+      [
+        "assert=",
+        [
+          "[]",
+          "1",
+          "-2"
+        ],
+        [
+          "2d/conjugate",
+          [
+            "[]",
+            "1",
+            "2"
+          ]
+        ]
+      ],
+      [
+        "assert=",
+        [
+          "[]",
+          "3",
+          "6"
+        ],
+        [
+          "2d/scale",
+          [
+            "[]",
+            "1",
+            "2"
+          ],
+          "3"
+        ]
+      ],
+      [
+        "assert=",
+        [
+          "[]",
+          "1",
+          "2"
+        ],
+        [
+          "2d/divide-by",
+          [
+            "[]",
+            "3",
+            "6"
+          ],
+          "3"
+        ]
+      ],
+      [
+        "assert=",
+        [
+          "[]",
+          "2",
+          "0"
+        ],
+        [
+          "2d/polar-point",
+          "0",
+          "2"
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "arithmetic.test/test-basic",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": [
+      {
+        "code": [
+          "test-basic"
+        ],
+        "name": "complex-operations",
+        "tags": [
+          "unit"
+        ]
+      }
+    ]
+  }
+]

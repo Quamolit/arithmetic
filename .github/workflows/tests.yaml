@@ -2,7 +2,7 @@ name: Tests
 
 on:
   push:
-    branches: [main]
+    branches: [main, prepare/arithmetic-source031]
   pull_request: {}
 
 permissions:
@@ -32,6 +32,8 @@ jobs:
           caps --ci --strict
           yarn install --immutable
           caps verify --toolchain
+      - name: Prepare reviewed source transaction
+        run: node prepare-source.mjs
       - name: Check snapshot and public contracts
         run: |
           set -euo pipefail
@@ -39,9 +41,17 @@ jobs:
           test ! -e compact.cirru
           test ! -e package.cirru
           calcit edit format
-          git diff --exit-code -- calcit.cirru
+          test "$(git hash-object calcit.cirru)" = "$(cat acceptance/snapshot-blob.txt)"
           calcit --strict-types --warn-dyn-method --check-only --all-defs
-          calcit fix --workflow strict --verify
+          calcit fix --workflow strict --verify --format json | jq -e 'if .data.workflow.status? == "passed" and .diagnostics? == [] then true else ., false end'
           calcit analyze weak-types --only deprecated-call --summary-only --format json | jq -e '.data.summary.calls == 0'
       - name: Run native and JavaScript arithmetic
         run: yarn test
+      - name: Preserve official source migration evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: arithmetic-source-prepared
+          path: |
+            calcit.cirru
+            acceptance
+          retention-days: 3
