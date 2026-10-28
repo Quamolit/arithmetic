@@ -23,7 +23,7 @@ jobs:
         run: corepack enable
       - uses: calcit-lang/setup-calcit@v1.5.0
         with:
-          version: "0.31.0"
+          version: "0.32.0"
           tools: calcit,caps
           caps-version: "0.1.1"
       - name: Install dependencies
@@ -35,12 +35,12 @@ jobs:
       - name: Check snapshot and public contracts
         run: |
           set -euo pipefail
-          test "$(calcit --version)" = "0.31.0"
+          test "$(calcit --version)" = "0.32.0"
           test ! -e compact.cirru
           test ! -e package.cirru
           calcit edit format
           if ! git diff --exit-code --quiet -- calcit.cirru; then
-            echo '::error file=calcit.cirru::Snapshot is not canonical. With Calcit 0.31.0, run calcit edit format and inspect definitions through calcit query def.'
+            echo '::error file=calcit.cirru::Snapshot is not canonical. With Calcit 0.32.0, run calcit edit format and inspect definitions through calcit query def.'
             exit 1
           fi
           calcit --strict-types --warn-dyn-method --check-only --all-defs

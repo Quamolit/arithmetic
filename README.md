@@ -4,9 +4,9 @@ Arithmetic
 
 复数运算模块，使用 `[实部, 虚部]` 数字列表；不提供前端资源或服务部署。
 
-使用者影响：CLI 与 `@calcit/procs` 配对升级至正式 **0.31.0**，CI 使用同一版本。
+使用者影响：CLI 与 `@calcit/procs` 配对升级至正式 **0.32.0**，CI 使用同一版本。
 使用者需重新安装依赖并重新生成 JavaScript；模块版本仍为 0.0.1，本 PR 不代表新 tag 或 npm 发布。
-本轮不改运算源码、公开 `List<Number>` 契约、列表长度约束或原八种运算断言。
+本轮通过官方 formatter 更新类型标注；运算逻辑、公开 `List<Number>` 契约、列表长度约束和原八种运算断言不变。
 没有前端资源，不添加 COS/CDN 配置；保留原全部类型门禁与 native/JavaScript 回放。
 
 ### Usages
@@ -30,7 +30,7 @@ Functions:
 
 ### Workflow
 
-需要配对的正式 Calcit / `@calcit/procs` 0.31.0、caps 0.1.1、Node.js 24 和 Yarn 4.18.0：
+需要配对的正式 Calcit / `@calcit/procs` 0.32.0、caps 0.1.1、Node.js 24 和 Yarn 4.18.0：
 
 ```sh
 caps --ci --strict
