@@ -19,16 +19,14 @@
                 y $ .unwrap $ nth p2 1
               [] (+ a x) (+ b y)
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :args $ [] (:: 'List 'Number) (:: 'List 'Number)
-            :return $ :: 'List 'Number
+          :schema $ quote $ Fn (List Number) (List Number)
+            -> $ List Number
         'conjugate $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn conjugate (pair)
             assoc pair 1 $ negate $ .unwrap (nth pair 1)
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :args $ [] $ :: 'List 'Number
-            :return $ :: 'List 'Number
+          :schema $ quote $ Fn (List Number)
+            -> $ List Number
         'divide $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn divide (value base) "|complex number division, renamed since naming collision"
             let[] (x y) value $ let[] (a b) base $ let
@@ -37,9 +35,8 @@
                 * inverted $ + (* x a) (* y b)
                 * inverted $ - (* y a) (* x b)
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :args $ [] (:: 'List 'Number) (:: 'List 'Number)
-            :return $ :: 'List 'Number
+          :schema $ quote $ Fn (List Number) (List Number)
+            -> $ List Number
         'divide-by $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn divide-by (point x)
             []
@@ -50,9 +47,8 @@
                 .unwrap $ nth point $ dec (.len point)
                 , x
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :args $ [] (:: 'List 'Number) 'Number
-            :return $ :: 'List 'Number
+          :schema $ quote $ Fn (List Number) Number
+            -> $ List Number
         'multiply $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn multiply (v1 v2)
             let
@@ -64,25 +60,22 @@
                 - (* a x) (* b y)
                 + (* a y) (* b x)
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :args $ [] (:: 'List 'Number) (:: 'List 'Number)
-            :return $ :: 'List 'Number
+          :schema $ quote $ Fn (List Number) (List Number)
+            -> $ List Number
         'polar-point $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn polar-point (angle r)
             []
               * r $ cos angle
               * r $ sin angle
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :args $ [] 'Number 'Number
-            :return $ :: 'List 'Number
+          :schema $ quote $ Fn Number Number
+            -> $ List Number
         'scale $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn scale (pair v)
             map pair $ fn (x) (* v x)
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :args $ [] (:: 'List 'Number) 'Number
-            :return $ :: 'List 'Number
+          :schema $ quote $ Fn (List Number) Number
+            -> $ List Number
         'subtract $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn subtract (v1 v2)
             let
@@ -92,9 +85,8 @@
                 y $ .unwrap $ nth v2 1
               [] (- a x) (- b y)
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :args $ [] (:: 'List 'Number) (:: 'List 'Number)
-            :return $ :: 'List 'Number
+          :schema $ quote $ Fn (List Number) (List Number)
+            -> $ List Number
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns arithmetic.complex
     'arithmetic.test $ %{} 'FileEntry
@@ -102,18 +94,15 @@
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! () (run-tests)
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
         'reload! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn reload! () (run-tests)
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
         'run-tests $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn run-tests () (test-basic)
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
         'test-basic $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn test-basic ()
             assert= ([] 3 5)
@@ -132,8 +121,7 @@
               2d/divide-by ([] 3 6) 3
             assert= ([] 2 0) (2d/polar-point 0 2)
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
           :tests $ [] $ %{} 'TestEntry (:name |complex-operations)
             :code $ quote $ test-basic
             :tags $ #{} :unit
