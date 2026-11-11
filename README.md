@@ -4,7 +4,7 @@ Arithmetic
 
 复数运算模块，使用 `[实部, 虚部]` 数字列表；不提供前端资源或服务部署。
 
-CLI 与 `@calcit/procs` 使用正式 **0.40.0**。升级后请重新安装依赖并生成 JavaScript。
+CLI 与 `@calcit/procs` 使用正式 **0.41.0**。升级后请重新安装依赖并生成 JavaScript。
 八个公开运算函数继续接收数字和数字列表。
 
 ### Usages
@@ -28,7 +28,7 @@ Functions:
 
 ### Workflow
 
-需要配对的正式 Calcit / `@calcit/procs` 0.40.0、caps 0.1.1、Node.js 24 和 Yarn 4.18.0：
+需要配对的正式 Calcit / `@calcit/procs` 0.41.0、caps 0.1.1、Node.js 24 和 Yarn 4.18.0：
 
 ```sh
 caps --ci --strict
