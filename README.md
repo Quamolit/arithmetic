@@ -4,7 +4,7 @@ Arithmetic
 
 复数运算模块，使用 `[实部, 虚部]` 数字列表；不提供前端资源或服务部署。
 
-候选 0.0.2 配对正式 CLI 与 `@calcit/procs` **0.45.1**。升级后请重新安装依赖并生成 JavaScript，正式 tag 发布后再升级。
+候选 0.0.3 配对正式 CLI 与 `@calcit/procs` **0.46.0**；已发布的 0.0.2 配对 0.45.1。升级后请重新安装依赖并生成 JavaScript，正式 tag 发布后再升级。
 八个公开运算函数继续接收数字和数字列表。
 
 ### Usages
@@ -28,7 +28,7 @@ Functions:
 
 ### Workflow
 
-需要配对的正式 Calcit / `@calcit/procs` 0.45.1、caps 0.1.2、Node.js 24 和 Yarn 4.18.0：
+需要配对的正式 Calcit / `@calcit/procs` 0.46.0、caps 0.1.2、Node.js 24 和 Yarn 4.18.0：
 
 ```sh
 caps --ci --strict
@@ -40,7 +40,7 @@ yarn test
 `yarn test` 在 native 和生成的 JavaScript 上运行同一组八种运算断言；
 定义附属测试使用内置测试入口，不再依赖旧 `calcit-test` 模块。
 默认入口为 native，`yarn compile` 显式生成 JS。仅维护 `calcit.cirru` / `deps.cirru`，
-`js-out/` 不进入 Git。模块版本仍为 0.0.1，本次 PR 不代表已发布新版本。新解析 npm 包至少发布60分钟，无单包例外；已锁版本按 immutable 安装。
+`js-out/` 不进入 Git。候选模块尚未发版。新解析 npm 包至少发布60分钟，无单包例外；已锁版本按 immutable 安装。
 
 迁移提示：旧 `&+`、`&-`、`&*`、`&/` 分别改为 `add`、`subtract`、`multiply`、`divide`，
 调用方需要同步改名。极坐标计算使用跨后端 `cos` / `sin`，不再直接调用 JS Math。
